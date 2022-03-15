@@ -1,0 +1,75 @@
+TASK 2 - PREDICTION USING UNSUPERVISED MACHINE LEARNING
+          Predict the  Optimum number of  Clusters IN Iris  Dataset and  Present  It  Visually
+
+Author - Shrikrishna H l
+
+
+
+
+
+To Import data
+
+```{r}
+data=read.csv(file.choose())
+```
+To View data
+
+```{r}
+View(data)
+```
+to check structure of data
+
+```{r}
+str(data)
+```
+to check summary of data
+
+```{r}
+summary(data)
+```
+factoring the data
+
+```{r}
+data$Species<-factor(data$Species)
+```
+check summary after factoring
+
+```{r}
+summary(data)
+```
+Activating ggplot
+
+
+```{r}
+library(ggplot2)
+```
+Visualising the data
+
+
+```{r}
+ggplot(data=data, aes(x=PetalLengthCm, y=data$PetalWidthCm, 
+                         colour=Species)) + geom_point()+xlab(NULL)+ylab(NULL)
+
+```
+
+Extract the required data
+```{r}
+data1<- data[2:5]
+```
+
+creating clusters using K-Means
+```{r}
+results<- kmeans(data1,3)
+```
+
+```{r}
+results
+```
+
+
+Visualising the clusters
+```{r}
+ggplot(data=data, aes(x=PetalLengthCm, y=PetalWidthCm, 
+                         colour=results$cluster)) + geom_point()
+
+```
